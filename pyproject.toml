@@ -1,0 +1,19 @@
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.pylint.format]
+max-line-length = 120
+disable = ["too-few-public-methods", "too-many-instance-attributes", "too-many-branches", "broad-except", "too-many-return-statements", "no-member", "too-many-locals"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
+no_implicit_reexport = false
+
+[tool.vulture]
+min_confidence = 90
+
+[tool.isort]
+profile = "black"
