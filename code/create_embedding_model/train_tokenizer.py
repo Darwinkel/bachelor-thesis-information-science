@@ -16,7 +16,7 @@ def main() -> None:
         text_iterator=vocabulary, vocab_size=2048
     )
 
-    new_tokenizer.save_pretrained("tokenizers/http-header-tokenizer-v2")
+    new_tokenizer.save_pretrained("tokenizers/http-header-tokenizer-v1")
 
 
 if __name__ == "__main__":

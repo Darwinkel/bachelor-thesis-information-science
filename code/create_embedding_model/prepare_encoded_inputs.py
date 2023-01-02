@@ -1,5 +1,4 @@
-"""Selects and processed the data into a classification format"""
-
+"""Creates a dimensionality-reduced, usable HuggingFace dataset"""
 import queue
 import sys
 import threading
@@ -14,6 +13,7 @@ from transformers import RobertaModel, RobertaTokenizerFast
 
 
 def infer():
+    """Tokenizes and embeds input samples"""
     with torch.no_grad():
         with open(sys.argv[1], "r", encoding="utf-8") as file:
             while True:
@@ -47,6 +47,7 @@ def infer():
 
 
 def infer_pca_embeddings():
+    """Creates a fit PCA model from the embedding list"""
     sentence_embeddings = []
     with torch.no_grad():
         with open(sys.argv[2], "r", encoding="utf-8") as file:
@@ -79,8 +80,8 @@ def infer_pca_embeddings():
     return pca
 
 
-# Mean Pooling - Take attention mask into account for correct averaging
 def mean_pooling(model_output, attention_mask):
+    """SentenceTransformers - Mean Pooling - Take attention mask into account for correct averaging"""
     token_embeddings = model_output[
         0
     ]  # First element of model_output contains all token embeddings
@@ -93,6 +94,7 @@ def mean_pooling(model_output, attention_mask):
 
 
 def generator_from_queue():
+    """A HuggingFace dataset generator that retrieves samples from a global queue"""
     while True:
         try:
             minor_classes, major_classes, reshaped_features = GLOBAL_QUEUE.get(
@@ -116,7 +118,7 @@ config.IN_MEMORY_MAX_SIZE = 1e9
 
 print("LOADING TOKENIZER AND MODEL...")
 tokenizer = RobertaTokenizerFast.from_pretrained("tokenizers/http-header-tokenizer-v1")
-model = RobertaModel.from_pretrained("models/http-header-roberta-v1/").to("cuda:0")
+model = RobertaModel.from_pretrained("models/http-header-roberta-v1").to("cuda:0")
 
 print("INFERRING PCA EMBEDDINGS...")
 pca = infer_pca_embeddings()
@@ -141,7 +143,7 @@ dataset = Dataset.from_generator(generator_from_queue, features=features)
 print(time.time() - t1 - 5)
 inference_thread.join(timeout=5)
 
-# 90% train, 10% test + validation
+# We want 90% train, 10% test + validation
 train_testvalid = dataset.train_test_split(test_size=0.2)
 # Split the 10% test + valid in half test, half valid
 test_valid = train_testvalid["test"].train_test_split(test_size=0.5)

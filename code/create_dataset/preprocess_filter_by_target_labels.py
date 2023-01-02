@@ -7,6 +7,7 @@ import pandas as pd
 
 
 def parse_label(label: str) -> tuple[str, str] | None:
+    """Parses desired target labels from a string"""
     result = re.search(r"(apache/[0-9\.]+)", label, flags=re.IGNORECASE)
     if result:
         return result.group(1).lower(), "Apache"
@@ -56,7 +57,7 @@ def main() -> None:
         f"preprocessed_filtered_{time.time()}.tsv", "w", encoding="utf-8"
     ) as file:
 
-        for index, row in dataframe.iterrows():
+        for _, row in dataframe.iterrows():
 
             parsed_label = parse_label(row[1])
 

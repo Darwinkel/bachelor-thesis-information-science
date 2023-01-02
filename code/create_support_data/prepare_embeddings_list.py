@@ -8,7 +8,7 @@ import pandas as pd
 def main() -> None:
     """Main Loop"""
 
-    # Load dataframe of domains
+    # Load `concatenated_data.tsv`
     dataframe = pd.read_csv(sys.argv[1], sep="\t", header=0, on_bad_lines="skip")
 
     unique_values_set: set[str] = set()

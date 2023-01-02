@@ -56,7 +56,6 @@ def main() -> None:
         data_collator=data_collator,
         train_dataset=tokenized_dataset["train"],
         eval_dataset=tokenized_dataset["train"],
-        # prediction_loss_only=True,
     )
     # Train the model
     trainer.train()

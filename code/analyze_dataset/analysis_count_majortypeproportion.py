@@ -1,10 +1,11 @@
-"""Performs some data analysis; """
+"""Performs some data analysis; calulates major types by proportion"""
 import re
 import sys
 from collections import Counter
 
 
 def parse_label(label: str) -> tuple[str, str] | None:
+    """Parses desired target labels from a string"""
     result = re.search(r"(apache/[0-9\.]+)", label, flags=re.IGNORECASE)
     if result:
         return result.group(1).lower(), "Apache"

@@ -1,4 +1,4 @@
-"""Performs data analysis and plots for a tsv"""
+"""Dumps the most frequent values in a tsv"""
 import sys
 
 import pandas as pd

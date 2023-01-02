@@ -17,7 +17,7 @@ def main() -> None:
     tokenizer = RobertaTokenizerFast.from_pretrained(
         "tokenizers/http-header-tokenizer-v1"
     )
-    model = RobertaForMaskedLM.from_pretrained("models/http-header-roberta-v1/")
+    model = RobertaForMaskedLM.from_pretrained("models/http-header-roberta-v1")
 
     dataset = load_dataset("text", data_files=sys.argv[1])
     tokenized_dataset = dataset.map(
@@ -50,7 +50,6 @@ def main() -> None:
         data_collator=data_collator,
         train_dataset=tokenized_dataset["train"],
         eval_dataset=tokenized_dataset["train"],
-        # prediction_loss_only=True,
     )
     # Train the model
     trainer.train()

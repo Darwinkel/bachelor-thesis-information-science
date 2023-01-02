@@ -4,5 +4,6 @@ check:
 	isort $(folder)
 	black $(folder)
 	vulture $(folder)
-	mypy $(folder)
+	eradicate -r $(folder)
 	pylint --recursive=yes $(folder)
+	mypy $(folder)

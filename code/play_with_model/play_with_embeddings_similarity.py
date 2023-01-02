@@ -1,4 +1,4 @@
-"""Selects and processed the data into a classification format"""
+"""Fun with embedding cosine similarity"""
 import os
 import sys
 
@@ -9,8 +9,8 @@ from transformers import RobertaModel, RobertaTokenizerFast
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"  # or any {'0', '1', '2'}
 
 
-# Mean Pooling - Take attention mask into account for correct averaging
 def mean_pooling(model_output, attention_mask):
+    """SentenceTransformers - Mean Pooling - Take attention mask into account for correct averaging"""
     token_embeddings = model_output[
         0
     ]  # First element of model_output contains all token embeddings
@@ -28,7 +28,7 @@ def main() -> None:
     tokenizer = RobertaTokenizerFast.from_pretrained(
         "tokenizers/http-header-tokenizer-v1"
     )
-    model = RobertaModel.from_pretrained("models/http-header-roberta-v1/")
+    model = RobertaModel.from_pretrained("models/http-header-roberta-v1")
 
     print("Model loading complete. Enter query when ready!")
     print("Seperate two sentences with a <SPLIT> token")

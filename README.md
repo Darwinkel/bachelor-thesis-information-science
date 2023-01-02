@@ -33,7 +33,7 @@ classification performance._
 
 # Instructions for replicating the experiment
 
-The code was originally written in Python 3.10, guided by `isort`,`black`, `mypy`, `pylint`, and `vulture`. It's a bit
+The code was originally written in Python 3.10, guided by `isort`,`black`, `mypy`, `pylint`, `vulture`, and `eradicate`. It's a bit
 of a mess, and the documentation is subpar. I haven't bothered to clean it properly as nobody will probably try to
 replicate my research. If you are interested in using the code and data, don't hesitate to contact me so I can help you
 get started. If desired, I can send my own processed files for reference.

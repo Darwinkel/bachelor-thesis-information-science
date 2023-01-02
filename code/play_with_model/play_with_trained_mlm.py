@@ -1,4 +1,4 @@
-"""Selects and processed the data into a classification format"""
+"""Fun with masked language modelling"""
 import os
 import sys
 
@@ -14,7 +14,7 @@ def main() -> None:
     tokenizer = RobertaTokenizerFast.from_pretrained(
         "tokenizers/http-header-tokenizer-v1"
     )
-    model = RobertaForMaskedLM.from_pretrained("models/http-header-roberta-v1/")
+    model = RobertaForMaskedLM.from_pretrained("models/http-header-roberta-v1")
 
     mask_filler = pipeline(task="fill-mask", model=model, tokenizer=tokenizer, top_k=5)
 

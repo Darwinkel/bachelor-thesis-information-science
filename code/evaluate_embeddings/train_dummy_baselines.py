@@ -1,4 +1,4 @@
-"""Selects and processed the data into a classification format"""
+"""Calculates the dummy baselines in the dataset"""
 
 from datasets import load_from_disk
 from sklearn.dummy import DummyClassifier

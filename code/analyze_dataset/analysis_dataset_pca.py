@@ -1,3 +1,4 @@
+"""Generates a 3D PCA plot"""
 import matplotlib.pyplot as plt
 import numpy as np
 from datasets import load_from_disk

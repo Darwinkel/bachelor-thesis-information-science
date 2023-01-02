@@ -1,4 +1,4 @@
-"""Selects and processes the data into a classification format"""
+"""Filters bad samples from the raw data"""
 import sys
 import time
 from collections import Counter
@@ -8,6 +8,7 @@ import pandas as pd
 
 
 def satisfies_quality_criteria(array: list[str]) -> bool:
+    """Determines if a sample passes quality criteria"""
     elements_count = Counter(array)
 
     total_invalid_elements = (
@@ -24,9 +25,10 @@ def satisfies_quality_criteria(array: list[str]) -> bool:
 
 
 def get_true_label(array: list[str]) -> str | None:
+    """Calculates a reasonable true label from a sample, if any"""
     elements_count = Counter(array)
     most_common = elements_count.most_common(1)[0]
-    # print(most_common)
+
     if (
         most_common[0]
         not in ["nan", None, "<ERROR>", "<EMPTY>", " ", "", np.nan, "None"]
@@ -46,7 +48,7 @@ def main() -> None:
 
     with open(f"preprocessed_{time.time()}.tsv", "w", encoding="utf-8") as file:
 
-        for index, row in dataframe.iterrows():
+        for _, row in dataframe.iterrows():
 
             labels_80 = []
             tests_80 = []
@@ -86,12 +88,10 @@ def main() -> None:
             true_label_80 = get_true_label(labels_80)
             if satisfies_quality_criteria(tests_80) and true_label_80:
                 valid_80 = True
-                # print(f"Valid port 80 sample! True label: {true_label_80}")
 
             true_label_443 = get_true_label(labels_443)
             if satisfies_quality_criteria(tests_443) and true_label_443:
                 valid_443 = True
-                # print(f"Valid port 443 sample! True label: {true_label_443}")
 
             joined_tests_80 = "\t".join(map(str, tests_80))
             joined_tests_443 = "\t".join(map(str, tests_443))
@@ -100,12 +100,9 @@ def main() -> None:
             # if not: we are dealing with two different web servers
             if valid_80 and valid_443:
                 if true_label_80 == true_label_443:
-                    # print("Excellent sample!")
                     file.write(
                         f"{row['domain']}\t{true_label_80}\t{joined_tests_80}\t{joined_tests_443}\n"
                     )
-            # else:
-            # print("Probably two different servers listening, discard this sample")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""Selects and processed the data into a classification format"""
+"""Train and evaluate a Random Forest for major type classification, and creates Confusion Matrix"""
 import math
 
 import matplotlib.pyplot as plt
@@ -21,23 +21,11 @@ def main() -> None:
 
     print(amount_of_classes)
     print(class_names)
-    # sys.exit()
 
-    # dataset = dataset.select(range(10000))
-
-    # bayes = MultinomialNB()
-    # lr = LogisticRegression()
-    # svm = SVC()
     rfc = RandomForestClassifier(n_jobs=-1)
 
-    # print(dataset["train"]["array"])
-    # print(dataset["train"]["major_class"])
-
-    # lr.fit(dataset["train"]["array"], dataset["train"]["major_class"])
     rfc.fit(dataset["train"]["array"], dataset["train"]["major_class"])
-    # svm.fit(dataset["train"]["array"].select(range(1000)), dataset["train"]["major_class"].select(range(1000)))
 
-    # y_pred = lr.predict(dataset["test"]["array"])
     y_pred = rfc.predict(dataset["test"]["array"])
 
     avg_importance = {}

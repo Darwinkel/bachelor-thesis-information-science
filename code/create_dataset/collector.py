@@ -1,5 +1,5 @@
 """Script to iterate over the Tranco list,
- do tests, and write the results to a database"""
+ do tests, and write the results to a tab seperated file"""
 import concurrent.futures
 import csv
 import socket
@@ -521,11 +521,9 @@ def run_test(
     sock: socket.socket, byte_message: bytes
 ) -> tuple[str, CaseInsensitiveDict[str]]:
     """Sends HTTP message to a socket and reads reply"""
-    # print(byte_message)
     sock.sendall(byte_message)
     data_raw = sock.recv(4096)
     data = data_raw.decode(errors="replace").split("\r\n\r\n", 1)[0]
-    # print(repr(data))
     return data, construct_header_datastructure(data)
 
 
@@ -534,7 +532,6 @@ def get_true_location(domain: str, headers: CaseInsensitiveDict[str]) -> str:
     try:
         split_url = urlsplit(headers["location"])
         # sanity check to make sure we don't get trapped in a loop
-        # print(split_url.netloc, domain)
         if split_url.netloc != domain:
             return split_url.netloc
 
@@ -566,7 +563,6 @@ def get_canonical_location(
 
         true_location = get_true_location(hostname, headers_dict)
 
-        # print(true_location)
         # If we get an empty string, we have reached the true location
         if not true_location:
             break
@@ -606,17 +602,7 @@ def main() -> None:
         reader = csv.reader(file)
         rank_domain_list = [tuple(row) for row in reader]
 
-    # try:
-    #     if sys.argv[2] == "--dump":
-    #         DUMP = True
-    # except IndexError:
-    #     DUMP = False
-
-    # process_domain((1, "darwinkel.net")).print_results()
-    # sys.exit()
-
     with open(FILENAME, "w", encoding="utf-8") as file:
-        # Append 'hello' at the end of file
         line = "domain\ttimestamp"
         for i in range((len(SOCKET_TESTS) + 3) * 2):
             line += f"\tlabel{i}\ttest{i}"
