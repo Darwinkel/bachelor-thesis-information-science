@@ -7,6 +7,8 @@ Code and datasets for my bachelor's thesis.
 The code of this project is licensed under the GNU GPLv3. The data that I have collected and processed (e.g. in
 the `data_*` folders) is licensed under the Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license.
 
+Note that the `domains` folder contains the list of domains as used in the experiment. Courtesy of the [Tranco list](https://tranco-list.eu/).
+
 # Abstract
 
 _We investigated the feasibility of using state-of-the-art deep learning, big data, and natural language processing
