@@ -6,7 +6,10 @@ authors:
   orcid: "https://orcid.org/0009-0009-6604-1175"
 title: "Fingerprinting web servers through Transformer-encoded HTTP response headers"
 abstract: "We explored leveraging state-of-the-art deep learning, big data, and natural language processing to enhance the detection of vulnerable web server versions. Focusing on improving accuracy and specificity over rule-based systems, we conducted experiments by sending various ambiguous and non-standard HTTP requests to 4.77 million domains and capturing HTTP response status lines. We represented these status lines through training a BPE tokenizer and RoBERTa encoder for unsupervised masked language modeling. We then dimensionality reduced and concatenated encoded response lines to represent each domain's web server. A Random Forest and multilayer perceptron (MLP) classified these web servers, and achieved 0.94 and 0.96 macro F1-score, respectively, on detecting the five most popular origin web servers. The MLP achieved a weighted F1-score of 0.55 on classifying 347 major type and minor version pairs. Analysis indicates that our test cases are meaningful discriminants of web server types. Our approach demonstrates promise as a powerful and flexible alternative to rule-based systems."
-doi: 10.48550/arXiv.2404.00056
 date-released: 2024-03-26
 repository-code: "https://github.com/Darwinkel/bachelor-thesis-information-science"
-
+preferred-citation:
+  identifiers:
+  - description: "Paper"
+    type: doi
+    value: 10.48550/arXiv.2404.00056
