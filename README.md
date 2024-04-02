@@ -11,7 +11,7 @@ Note that the `domains` folder contains the list of domains as used in the exper
 
 # Cite
 ```
-@article{darwinkel2024fingerprinting,
+@misc{darwinkel2024fingerprinting,
       title={Fingerprinting web servers through Transformer-encoded HTTP response headers}, 
       author={Patrick Darwinkel},
       year={2024},
