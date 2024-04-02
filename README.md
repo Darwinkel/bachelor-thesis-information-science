@@ -9,6 +9,20 @@ the `data_*` folders) is licensed under the Attribution-ShareAlike 4.0 Internati
 
 Note that the `domains` folder contains the list of domains as used in the experiment. Courtesy of the [Tranco list](https://tranco-list.eu/).
 
+# Cite
+```
+@article{darwinkel2024fingerprinting,
+      title={Fingerprinting web servers through Transformer-encoded HTTP response headers}, 
+      author={Patrick Darwinkel},
+      year={2024},
+      month = mar,
+      eprint={2404.00056},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://doi.org/10.48550/arXiv.2404.00056}
+}
+```
+
 # Abstract
 
 _We investigated the feasibility of using state-of-the-art deep learning, big data, and natural language processing
