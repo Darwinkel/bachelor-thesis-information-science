@@ -9,7 +9,6 @@ abstract: "We explored leveraging state-of-the-art deep learning, big data, and 
 date-released: 2024-03-26
 repository-code: "https://github.com/Darwinkel/bachelor-thesis-information-science"
 preferred-citation:
-  identifiers:
-  - description: "Paper"
+    description: "Paper"
     type: doi
     value: 10.48550/arXiv.2404.00056
